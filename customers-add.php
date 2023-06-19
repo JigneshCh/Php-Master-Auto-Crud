@@ -29,8 +29,7 @@ check_logged_in("admin");
 
 // Check if table exist or migrate table
 $check = $conn->query("DESCRIBE `$model`");
-if (isset($check->num_rows) && $check->num_rows > 0) {
-} else {
+if (!isset($check->num_rows) || $check->num_rows <= 0) {
 	$createTableQuery = "id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,";
 	foreach ($fillable as $key => $fill) {
 		$nulloption = ($fill['require']) ? "NOT NULL" : "DEFAULT NULL";
@@ -45,7 +44,7 @@ if (isset($check->num_rows) && $check->num_rows > 0) {
 		}
 		if ($fill['type'] == "select" && count($fill['option'])) {
 			$option = "'" . implode("','", $fill['option']) . "'";
-			$default = ($fill['require'] && 0) ? "NOT NULL DEFAULT '" . $fill['option'][0] . "'" : "DEFAULT NULL";
+			$default = ($fill['require']) ? "NOT NULL DEFAULT '" . $fill['option'][0] . "'" : "DEFAULT NULL";
 			$createTableQuery .= " " . $key . "  ENUM($option) $default,";
 		}
 	}
