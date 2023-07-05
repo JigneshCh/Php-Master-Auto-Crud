@@ -11,8 +11,7 @@ This is a sample PHP code just need to define table name and field array for cru
 
 ## Overview 
 
- - Url_1: http://13.234.224.145/Jignesh-demo/Php-Master-Auto-Crud/
- - Url_2: http://jc-deloper.com/Jignesh-demo/Php-Master-Auto-Crud/
+ - Url: http://jcwebdeveloper.com/Jignesh-demo/Php-Master-Auto-Crud/
 
 #Listing page | Delete | customer
 
